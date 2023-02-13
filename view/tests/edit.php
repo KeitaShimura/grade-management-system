@@ -1,4 +1,4 @@
-<?PHP
+<?php
 require_once "../../config/db.php";
 require_once "../../model/Tests.php";
 require_once "../../controller/TestsController.php";
@@ -26,8 +26,8 @@ $_SESSION['token'] = $token;
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">テスト登録画面</h1>
     <div style="text-align: center;" class="position-relative">
         <form method="POST" action="update.php">
-        <input type="hidden" name="id" value="<?php print($test[0]); ?>">
-        <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
+            <input type="hidden" name="id" value="<?php print($test[0]); ?>">
+            <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
 
             <?php if (isset($_SESSION['status'])) : ?>
                 <div class="alert alert-danger" role="alert">
@@ -46,9 +46,15 @@ $_SESSION['token'] = $token;
                     <input type="text" class="form-control" name="name" value="<?php print($test[2]); ?>">
                 </div>
                 <div style="text-align: center;">
+                    <input type="hidden" name="id" value="<?php print($test[0]); ?>">
+                    <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
                     <input type="submit" class="btn btn-success" value="送信">
-                    <input type="reset" class="btn btn-danger" value="リセット">
+                    <input type="reset" class="btn btn-secondary" value="リセット">
                 </div>
+            </div>
+        </form>
+        <form method="POST" action="delete.php?id=<?php print($test['id']); ?>">
+            <input type="submit" class="btn btn-danger" value="削除">
         </form>
     </div>
 </body>

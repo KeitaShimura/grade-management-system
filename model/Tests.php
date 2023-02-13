@@ -34,7 +34,11 @@ class Tests
     {
         $statement = $this->PDO->prepare("SELECT * FROM tests where id = :id");
         $statement->bindParam(":id", $id);
-        return ($statement->execute()) ? $statement->fetch() : false;
+        if ($statement->execute()) {
+            return $statement->fetch();
+        } else {
+            return false;
+        }
     }
 
     public function update($id,$data)
@@ -51,15 +55,15 @@ class Tests
         }
     }
 
-    // public function delete($id)
-    // {
-    //     $statement = $this->PDO->prepare("DELETE FROM tests WHERE id = :id");
-    //     $statement->bindParam(":id", $id);
+    public function delete($id)
+    {
+        $statement = $this->PDO->prepare("DELETE FROM tests WHERE id = :id");
+        $statement->bindParam(":id", $id);
 
-    //     if ($statement->execute()) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
