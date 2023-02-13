@@ -1,6 +1,6 @@
 <?php
 
-class Tests
+class Students
 {
     private $PDO;
     public function __construct()

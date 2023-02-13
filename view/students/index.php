@@ -1,9 +1,9 @@
 <?php
 require_once "../../config/db.php";
-require_once "../../model/Tests.php";
-require_once "../../controller/TestsController.php";
-$obj = new TestsController();
-$tests = $obj->index();
+require_once "../../model/Students.php";
+require_once "../../controller/StudentsController.php";
+$obj = new StudentsController();
+$students = $obj->index();
 
 ?>
 
@@ -19,7 +19,7 @@ $tests = $obj->index();
 </head>
 
 <body>
-    <h1 class="fs-1" style="margin: 50px 0 0 40px;">テスト一覧画面</h1>
+    <h1 class="fs-1" style="margin: 50px 0 0 40px;">生徒一覧画面</h1>
     <div style="text-align: center;" class="position-relative">
         <?php if (isset($_SESSION['status'])) : ?>
             <div class="alert alert-success" role="alert">
@@ -30,24 +30,28 @@ $tests = $obj->index();
         <?php endif; ?>
         <article>
             <div class="table-responsive">
-                <?php if ($tests) : ?>
+                <?php if ($students) : ?>
                     <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;">
                         <thead style="height: 50px;">
                             <tr>
                                 <th class="col-3" style="font-weight: bold;">ID</th>
                                 <th class="col-3" style="font-weight: bold;">学年</th>
+                                <th class="col-3" style="font-weight: bold;">クラス</th>
+                                <th class="col-3" style="font-weight: bold;">学生番号</th>
                                 <th class="col-3" style="font-weight: bold;">名前</th>
                                 <th class="col-3" style="font-weight: bold;">編集</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <?php foreach ($tests as $test) : ?>
+                            <?php foreach ($students as $student) : ?>
                                 <tr>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($test['id']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($test['year']); ?></td>
-                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($test['name']); ?></td>
-                                    <td class="col-3" style="vertical-align: middle;"><a href="edit.php?id=<?php print($test['id']); ?>" class="btn btn-primary">編集</a></td>
+                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($student['id']); ?></td>
+                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($student['year']); ?></td>
+                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($student['class']); ?></td>
+                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($student['number']); ?></td>
+                                    <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($student['name']); ?></td>
+                                    <td class="col-3" style="vertical-align: middle;"><a href="edit.php?id=<?php print($student['id']); ?>" class="btn btn-primary">編集</a></td>
                                 </tr>
                             <?php endforeach; ?>
 
@@ -55,7 +59,7 @@ $tests = $obj->index();
 
                     </table>
                 <?php else : ?>
-                    <h3 class="fs-3" style="text-align: center; margin: 50px 0 0 0;">テストは登録されていません</h3>
+                    <h3 class="fs-3" style="text-align: center; margin: 50px 0 0 0;">生徒は登録されていません</h3>
                 <?php endif; ?>
             </div>
         </article>

@@ -1,4 +1,4 @@
-<?php
+<?PHP
 session_start();
 
 $token = bin2hex(openssl_random_pseudo_bytes(24));
@@ -17,7 +17,7 @@ $_SESSION['token'] = $token;
 </head>
 
 <body>
-    <h1 class="fs-1" style="margin: 50px 0 0 40px;">テスト登録画面</h1>
+    <h1 class="fs-1" style="margin: 50px 0 0 40px;">生徒登録画面</h1>
     <div style="text-align: center;" class="position-relative">
         <form method="POST" action="save.php">
         <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
@@ -32,7 +32,15 @@ $_SESSION['token'] = $token;
             <div class="form" style="text-align: center;">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">学年</label>
-                    <input type="number" min="1" max="10" class="form-control" id="year" name="year" placeholder="">
+                    <input type="number" min="1" max="10" class="form-control" id="year" name="year">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">クラス</label>
+                    <input type="number" min="1" max="10" class="form-control" id="class" name="class">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">学生番号</label>
+                    <input type="number" min="1" max="100" class="form-control" id="number" name="number">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">お名前</label>
