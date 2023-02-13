@@ -1,4 +1,4 @@
-<?PHP
+<?php
 require_once "../../config/db.php";
 require_once "../../model/Tests.php";
 require_once "../../controller/TestsController.php";
@@ -37,6 +37,7 @@ $tests = $obj->index();
                                 <th class="col-3" style="font-weight: bold;">ID</th>
                                 <th class="col-3" style="font-weight: bold;">学年</th>
                                 <th class="col-3" style="font-weight: bold;">名前</th>
+                                <th class="col-3" style="font-weight: bold;">編集</th>
                             </tr>
                         </thead>
 
@@ -46,6 +47,7 @@ $tests = $obj->index();
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($test['id']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($test['year']); ?></td>
                                     <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($test['name']); ?></td>
+                                    <td class="col-3" style="vertical-align: middle;"><a href="edit.php?id=<?php print($test['id']); ?>" class="btn btn-primary">編集</a></td>
                                 </tr>
                             <?php endforeach; ?>
 

@@ -29,7 +29,7 @@ $_SESSION['token'] = $token;
         <input type="hidden" name="token" value="<?= htmlspecialchars($token, ENT_COMPAT, 'UTF-8'); ?>">
 
             <?php if (isset($_SESSION['status'])) : ?>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-danger" role="alert">
                     <?php echo $_SESSION['status'];
                     unset($_SESSION['status']); ?>
                 </div>
