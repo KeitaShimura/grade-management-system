@@ -35,4 +35,15 @@ class Exams
             return false;
         }
     }
+
+    public function get($name)
+    {
+        $statement = $this->PDO->prepare("SELECT students.number AS student_number, students.name AS student_name, exams.kokugo, exams.sugaku, exams.eigo, exams.rika, exams.shakai, exams.goukei FROM exams INNER JOIN students ON exams.student_id = students.id INNER JOIN tests ON exams.test_id = tests.id where students.name = :name");
+        $statement->bindParam(":name", $name);
+        if ($statement->execute()) {
+            return $statement->fetch();
+        } else {
+            return false;
+        }
+    }
 }

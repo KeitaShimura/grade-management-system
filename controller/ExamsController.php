@@ -66,4 +66,9 @@ class ExamsController
         $_SESSION['status'] = "テスト結果を登録しました。";
         return header("Location: index.php");
     }
+
+    public function get($name)
+    {
+        return $this->model->get($name);
+    }
 }

@@ -1,10 +1,14 @@
 <?php
 require_once "../../config/db.php";
+require_once "../../model/Tests.php";
 require_once "../../model/Exams.php";
+require_once "../../controller/TestsController.php";
 require_once "../../controller/ExamsController.php";
-$obj = new ExamsController();
-$exams = $obj->index();
 
+$tests_obj = new TestsController();
+$tests = $tests_obj->index();
+$exams_obj = new ExamsController();
+$exams = $exams_obj->get($_GET['name']);
 ?>
 
 <!DOCTYPE html>
@@ -21,19 +25,40 @@ $exams = $obj->index();
 <body>
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">テスト一覧画面</h1>
     <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="edit.php?id=<?php print($test['id']); ?>">前期中間テスト</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="edit.php?id=<?php print($test['id']); ?>">前期期末テスト</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="edit.php?id=<?php print($test['id']); ?>">後期中間テスト</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="edit.php?id=<?php print($test['id']); ?>">後期期末テスト</a>
-        </li>
+        <?php foreach ($tests as $test) : ?>
+            <a href="result.php?name=<?php echo $test['name']; ?>"><?php echo $test['name']; ?></a>
+        <?php endforeach; ?>
     </ul>
+
+    <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;">
+        <thead style="height: 50px;">
+            <tr>
+                <th class="col-3" style="font-weight: bold;">ID</th>
+                <th class="col-3" style="font-weight: bold;">テスト</th>
+                <th class="col-3" style="font-weight: bold;">名前</th>
+                <th class="col-3" style="font-weight: bold;">国語</th>
+                <th class="col-3" style="font-weight: bold;">数学</th>
+                <th class="col-3" style="font-weight: bold;">英語</th>
+                <th class="col-3" style="font-weight: bold;">理科</th>
+                <th class="col-3" style="font-weight: bold;">社会</th>
+                <th class="col-3" style="font-weight: bold;">合計</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($exams as $exam) : ?>
+            <tr>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['student_number']); ?></td>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['student_name']); ?></td>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['kokugo']); ?></td>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['sugaku']); ?></td>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['eigo']); ?></td>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['rika']); ?></td>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['shakai']); ?></td>
+                <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['goukei']); ?></td>
+            </tr>
+            <? endforeach; ?>
+        </tbody>
+    </table>
 </body>
 
 </html>
