@@ -27,8 +27,8 @@ class TestsController
         if (empty($_POST['year'])) {
             $_SESSION['status'] = "学年を入力してください。";
             return header("Location: create.php");
-        } else if (empty($_POST['name'])) {
-            $_SESSION['status'] = "名前を入力してください。";
+        } else if ($_POST['name'] == "テストを選択") {
+            $_SESSION['status'] = "テストを選択してください。";
             return header("Location: create.php");
         }
         $this->model->save($data);

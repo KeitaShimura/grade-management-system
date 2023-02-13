@@ -35,8 +35,14 @@ $_SESSION['token'] = $token;
                     <input type="number" min="1" max="10" class="form-control" id="year" name="year" placeholder="">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">お名前</label>
-                    <input type="text" class="form-control" name="name">
+                    <label for="exampleFormControlInput1" class="form-label">名前</label>
+                    <select name="name">
+                        <option hidden>テストを選択</option>
+                        <option>前期中間テスト</option>
+                        <option>前期期末テスト</option>
+                        <option>後期中間テスト</option>
+                        <option>後期期末テスト</option>
+                    </select>
                 </div>
                 <div style="text-align: center;">
                     <input type="submit" class="btn btn-success" value="送信">

@@ -20,6 +20,9 @@ $exams = $obj->index();
 
 <body>
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">テスト一覧画面</h1>
+    <form action="download.php" method="post">
+        <button name="csvoutput" type="submit">CSV ダウンロード</button>
+    </form>
     <div style="text-align: center;" class="position-relative">
         <?php if (isset($_SESSION['status'])) : ?>
             <div class="alert alert-success" role="alert">
@@ -37,11 +40,11 @@ $exams = $obj->index();
                                 <th class="col-3" style="font-weight: bold;">ID</th>
                                 <th class="col-3" style="font-weight: bold;">テスト</th>
                                 <th class="col-3" style="font-weight: bold;">名前</th>
-                                <th class="col-3" style="font-weight: bold;">英語</th>
+                                <th class="col-3" style="font-weight: bold;">国語</th>
                                 <th class="col-3" style="font-weight: bold;">数学</th>
+                                <th class="col-3" style="font-weight: bold;">英語</th>
                                 <th class="col-3" style="font-weight: bold;">理科</th>
                                 <th class="col-3" style="font-weight: bold;">社会</th>
-                                <th class="col-3" style="font-weight: bold;">国語</th>
                                 <th class="col-3" style="font-weight: bold;">合計</th>
                             </tr>
                         </thead>
