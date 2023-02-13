@@ -17,13 +17,9 @@ class Tests
         return $statement->fetchAll();
     }
 
-    public function create() {
-
-    }
-
     public function save($data)
     {
-        $statement = $this->PDO->prepare("INSERT INTO bookings (year, name, created_at, updated_at) VALUES(:year, :name, NOW(), NOW())");
+        $statement = $this->PDO->prepare("INSERT INTO grade (year, name, created_at, updated_at) VALUES(:year, :name, NOW(), NOW())");
         $statement->bindParam(":year", $data['year']);
         $statement->bindParam(":name", $data['name']);
 
@@ -34,8 +30,11 @@ class Tests
         }
     }
 
-    public function edit() {
-
+    public function edit($id)
+    {
+        $statement = $this->PDO->prepare("SELECT * FROM grade where id = :id");
+        $statement->bindParam(":id", $id);
+        return ($statement->execute()) ? $statement->fetch() : false;
     }
 
     public function update($id, $content)
