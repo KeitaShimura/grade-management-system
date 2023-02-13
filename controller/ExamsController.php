@@ -9,6 +9,11 @@ class ExamsController
         $this->model = new Exams();
     }
 
+    public function index()
+    {
+        return $this->model->index();
+    }
+
     public function save()
     {
         $test_id = htmlspecialchars(trim($_POST['test_id']), ENT_QUOTES);

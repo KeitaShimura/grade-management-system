@@ -9,6 +9,14 @@ class Exams
         $this->PDO = $conn->connection();
     }
 
+    public function index()
+    {
+        $statement = $this->PDO->prepare("SELECT exams.id, tests.name AS test_name, students.name AS student_name, exams.kokugo, exams.sugaku, exams.eigo, exams.rika, exams.shakai, exams.goukei FROM exams INNER JOIN students ON exams.student_id = students.id INNER JOIN tests ON exams.test_id = tests.id");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public function save($data)
     {
         $statement = $this->PDO->prepare("INSERT INTO exams (test_id, student_id, kokugo, sugaku, eigo, rika, shakai, goukei, created_at, updated_at) VALUES(:test_id, :student_id, :kokugo, :sugaku, :eigo, :rika, :shakai, :goukei, NOW(), NOW())");
