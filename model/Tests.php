@@ -66,4 +66,11 @@ class Tests
             return false;
         }
     }
+
+    public function get() {
+        $statement = $this->PDO->prepare("SELECT DISTINCT name FROM tests");
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 }

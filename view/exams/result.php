@@ -6,9 +6,7 @@ require_once "../../controller/TestsController.php";
 require_once "../../controller/ExamsController.php";
 
 $tests_obj = new TestsController();
-$tests = $tests_obj->index();
-$exams_obj = new ExamsController();
-$exams = $exams_obj->get($_GET['name']);
+$tests = $tests_obj->get();
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +23,9 @@ $exams = $exams_obj->get($_GET['name']);
 <body>
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">テスト一覧画面</h1>
     <ul class="nav justify-content-center">
-        <?php foreach ($tests as $test) : ?>
-            <a href="result.php?name=<?php echo $test['name']; ?>"><?php echo $test['name']; ?></a>
-        <?php endforeach; ?>
+        <?php foreach ($tests as $test) { ?>
+            <a href="result.php?test_name=<?php echo $test['name']; ?>"><?php echo htmlspecialchars($test['name']); ?></a>
+        <?php } ?>
     </ul>
 
     <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;">
@@ -45,7 +43,6 @@ $exams = $exams_obj->get($_GET['name']);
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($exams as $exam) : ?>
             <tr>
                 <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['student_number']); ?></td>
                 <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['student_name']); ?></td>
@@ -56,9 +53,7 @@ $exams = $exams_obj->get($_GET['name']);
                 <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['shakai']); ?></td>
                 <td class="col-3" style="text-align: left; vertical-align: middle;"><?php print($exam['goukei']); ?></td>
             </tr>
-            <? endforeach; ?>
         </tbody>
-    </table>
 </body>
 
 </html>

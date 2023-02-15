@@ -69,4 +69,9 @@ class TestsController
         $this->model->delete($id);
         return header("Location: index.php");
     }
+
+    public function get()
+    {
+        return $this->model->get();
+    }
 }
